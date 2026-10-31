@@ -361,7 +361,8 @@ export const Products: React.FC = () => {
       return next;
     });
   const selectedProducts = products.filter(p => selectedIds.has(p.id));
-  const canBulkEdit = !isCashier;
+  // Everyone who can open Products may bulk-change prices; cashiers only see/change selling prices
+  const canBulkEdit = true;
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-kurdish animate-in">
