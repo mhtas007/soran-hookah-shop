@@ -1,0 +1,14 @@
+// Cloudflare Workers (static assets) — used when the repo is connected via
+// Workers & Pages → Create → Import a repository.
+// Build command: npm run build      Deploy command: npx wrangler deploy
+// (Cloudflare *Pages* ignores this file; there set the output folder to "dist".)
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "soran-hookah-shop",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    // every page (/pos, /products …) opens the app instead of a 404
+    "not_found_handling": "single-page-application"
+  }
+}
