@@ -385,13 +385,27 @@ export const Products: React.FC = () => {
           </div>
         </div>
 
-        <button 
-          onClick={() => openAddModal()}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all shadow-sm active:scale-95 shadow-blue-200"
-        >
-          <Plus className="w-5 h-5" />
-          زیادکردنی کاڵای نوێ
-        </button>
+        <div className="flex items-center gap-2">
+          {canBulkEdit && (
+            <button
+              onClick={() => { if (!selectedCategory && !searchTerm) setSelectedCategory('__ALL__'); setSelectMode(true); }}
+              className="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 sm:px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all active:scale-95"
+              title="گۆڕینی نرخ بە کۆمەڵ"
+            >
+              <BadgeDollarSign className="w-5 h-5" />
+              <span className="hidden sm:inline">گۆڕینی نرخ بە کۆمەڵ</span>
+              <span className="sm:hidden">نرخ</span>
+            </button>
+          )}
+          <button 
+            onClick={() => openAddModal()}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all shadow-sm active:scale-95 shadow-blue-200"
+          >
+            <Plus className="w-5 h-5" />
+            <span className="hidden sm:inline">زیادکردنی کاڵای نوێ</span>
+            <span className="sm:hidden">نوێ</span>
+          </button>
+        </div>
       </header>
 
       <main className="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full">
