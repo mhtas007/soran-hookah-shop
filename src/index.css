@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+/* ─── Kurdish Speda Typography Engine ─── */
+@font-face {
+  font-family: 'Speda';
+  src: url('/fonts/Speda-Bold.woff') format('woff'),
+       url('/fonts/Speda-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Speda';
+  src: url('/fonts/Speda-Regular.woff') format('woff'),
+       url('/fonts/Speda-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-kurdish: 'Speda', 'Rabar', 'NRT', 'Tahoma', system-ui, sans-serif;
+  
+  --color-pos-50: #eef2ff;
+  --color-pos-100: #e0e7ff;
+  --color-pos-500: #6366f1;
+  --color-pos-600: #4f46e5;
+  --color-pos-700: #4338ca;
+
+  --color-safe-50: #ecfdf5;
+  --color-safe-100: #d1fae5;
+  --color-safe-500: #10b981;
+  --color-safe-600: #059669;
+
+  --color-expense-50: #fff1f2;
+  --color-expense-100: #ffe4e6;
+  --color-expense-500: #f43f5e;
+  --color-expense-600: #e11d48;
+}
+
+@layer base {
+  * {
+    font-family: 'Speda', 'Rabar', 'NRT', system-ui, sans-serif;
+  }
+
+  body {
+    @apply font-kurdish bg-gray-50 text-slate-800 antialiased;
+    font-family: 'Speda', 'Rabar', 'NRT', system-ui, sans-serif !important;
+    direction: rtl;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    overscroll-behavior-y: none;
+  }
+
+  input, textarea, select, button {
+    font-family: 'Speda', 'Rabar', 'NRT', system-ui, sans-serif;
+    user-select: auto;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .animate-in {
+    animation: slideUpFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+  }
+  .toast-in { animation: toastIn 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  .nice-scroll { scrollbar-width: thin; scrollbar-color: #e2e8f0 transparent; }
+}
+
+/* ─── Professional polish (applies to every page) ─── */
+@layer base {
+  html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+
+  /* Numbers line up in tables and totals */
+  .font-mono, td, input[type="number"] { font-variant-numeric: tabular-nums; }
+
+  /* Clear, consistent keyboard focus */
+  :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+  }
+
+  /* Smoother interaction feedback */
+  button, a { transition-property: color, background-color, border-color, box-shadow, transform, opacity; transition-duration: 150ms; }
+  button:disabled { cursor: not-allowed; }
+
+  /* Hide number spinners (cleaner price inputs) */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+  /* Table headers stay readable when scrolling long lists */
+  thead th { white-space: nowrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ─── Global Print Engine ─── */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0; /* Removes browser header/footer URLs */
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  /* Thermal Receipt Mode (80mm) */
+  .printable-receipt, .printable-receipt * {
+    visibility: visible;
+  }
+  .printable-receipt {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 80mm !important;
+    max-width: 80mm !important;
+    margin: 0 !important;
+    padding: 3mm !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Full A4 Document Mode (Reports, Statements, Inventory Audit) */
+  .printable-a4, .printable-a4 * {
+    visibility: visible;
+  }
+  .printable-a4 {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 12mm 15mm !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Unified design layer — one consistent, calmer look on every page
+   (unlayered on purpose so it refines the per-page utility classes)
+   ═══════════════════════════════════════════════════════════════ */
+@media screen {
+  /* Soft app background shared by all pages */
+  .app-shell {
+    background:
+      radial-gradient(1200px 400px at 85% -10%, rgba(99, 102, 241, 0.07), transparent 60%),
+      radial-gradient(900px 360px at 0% 0%, rgba(16, 185, 129, 0.05), transparent 60%),
+      #f5f6fa;
+  }
+  .app-shell > main > .bg-slate-50,
+  .app-shell > main > .bg-slate-100,
+  .app-shell > main > .bg-gray-50 { background-color: transparent; }
+
+  /* Frosted, consistent page headers */
+  .app-shell > main > div > header.sticky,
+  .app-shell > main > div > header:first-child {
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom-color: rgba(226, 232, 240, 0.8);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02), 0 8px 24px -18px rgba(15, 23, 42, 0.18);
+  }
+  .app-shell > main > div > header h1 { letter-spacing: -0.01em; }
+
+  /* Cards: hairline border + soft depth instead of flat boxes */
+  .app-shell main .bg-white.border:is(.rounded-xl, .rounded-2xl, .rounded-3xl, [class*="rounded-["]) {
+    border-color: rgba(226, 232, 240, 0.9);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px -8px rgba(15, 23, 42, 0.06);
+  }
+
+  /* Tables: calm header, clear rows */
+  .app-shell main table thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+  .app-shell main table tbody tr { transition: background-color 120ms ease; }
+  .app-shell main table tbody td { border-color: #f1f5f9; }
+
+  /* Form fields: one focus style everywhere */
+  .app-shell main :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea) {
+    transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  }
+  .app-shell main :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea):focus {
+    border-color: #818cf8;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    outline: none;
+  }
+
+  /* Header back buttons look the same on every page */
+  .app-shell > main > div > header button:has(> svg.lucide-arrow-right):first-child {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.875rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  }
+  .app-shell > main > div > header button:has(> svg.lucide-arrow-right):first-child:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+}
+@media screen {
+  .app-shell main td :is(button, a, span[class*="rounded"]) { white-space: nowrap; }
+}
