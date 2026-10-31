@@ -2,7 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 import { useAppStore } from '../store/useAppStore';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Accept both names (older .env uses ANON_KEY, newer Supabase dashboards call it PUBLISHABLE_KEY)
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("Supabase credentials are not provided in environment variables!");

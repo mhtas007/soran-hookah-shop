@@ -989,7 +989,7 @@ export const Reports: React.FC = () => {
                 )}
                 <div>
                   <h1 className="text-2xl font-black text-slate-950">{settings.shopName || 'سۆران هۆکە شۆپ'}</h1>
-                  <p className="text-xs text-slate-600 font-bold mt-0.5">{settings.receiptHeader || 'سیستەمی بەڕێوەبردنی فرۆشتن و کۆگا'}</p>
+                  <p className="text-xs text-slate-600 font-bold mt-0.5">{settings.receiptHeader || 'نێرگەلە و پێداویستییەکانی نێرگەلە'}</p>
                   <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium mt-1">
                     {settings.phone && <span>تەلەفۆن: {settings.phone}</span>}
                     {settings.address && <span>ناونیشان: {settings.address}</span>}
@@ -1163,7 +1163,7 @@ export const Reports: React.FC = () => {
             )}
             <div>
               <h1 className="text-2xl font-black text-slate-950">{settings.shopName || 'سۆران هۆکە شۆپ'}</h1>
-              <p className="text-xs text-slate-600 font-bold mt-0.5">{settings.receiptHeader || 'سیستەمی بەڕێوەبردنی فرۆشتن و کۆگا'}</p>
+              <p className="text-xs text-slate-600 font-bold mt-0.5">{settings.receiptHeader || 'نێرگەلە و پێداویستییەکانی نێرگەلە'}</p>
               <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium mt-1">
                 {settings.phone && <span>تەلەفۆن: {settings.phone}</span>}
                 {settings.address && <span>ناونیشان: {settings.address}</span>}
