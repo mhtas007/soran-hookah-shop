@@ -102,9 +102,7 @@ export const LoginScreen: React.FC = () => {
                 className="w-20 h-20 rounded-3xl object-contain p-2 bg-slate-800/80 border border-slate-700/80 shadow-2xl shadow-indigo-500/20" 
               />
             ) : (
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-700 flex items-center justify-center text-white font-black text-3xl shadow-2xl shadow-indigo-500/30">
-                S
-              </div>
+              <img src="/logo.svg" alt="Soran Hookah Shop" className="w-20 h-20 rounded-3xl shadow-2xl shadow-indigo-500/30" />
             )}
             <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center shadow-xs">
               <ShieldCheck className="w-3.5 h-3.5 text-slate-950 stroke-[2.5]" />
@@ -115,7 +113,7 @@ export const LoginScreen: React.FC = () => {
             {settings.shopName || 'سۆران هۆکە شۆپ'}
           </h1>
           <p className="text-xs sm:text-sm text-slate-400 mt-1 font-medium">
-            {settings.receiptHeader || 'سیستەمی بەڕێوەبردنی فرۆشتن و کۆگا'}
+            {settings.receiptHeader || 'نێرگەلە و پێداویستییەکانی نێرگەلە'}
           </p>
         </div>
 

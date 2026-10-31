@@ -273,9 +273,7 @@ export const Home: React.FC = () => {
                 className="w-12 h-12 rounded-2xl object-contain p-1 border border-slate-200 bg-white shadow-xs" 
               />
             ) : (
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center text-white font-black text-xl shadow-md shadow-indigo-200">
-                S
-              </div>
+              <img src="/logo.svg" alt="Soran Hookah Shop" className="w-12 h-12 rounded-2xl shadow-md shadow-indigo-200" />
             )}
 
             <div>
@@ -289,7 +287,7 @@ export const Home: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-medium mt-0.5">
-                {settings.receiptHeader || 'سیستەمی بەڕێوەبردنی فرۆشتن و کۆگا'}
+                {settings.receiptHeader || 'نێرگەلە و پێداویستییەکانی نێرگەلە'}
               </p>
             </div>
           </div>
