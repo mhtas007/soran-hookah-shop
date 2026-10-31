@@ -71,6 +71,7 @@ export const BulkPriceModal: React.FC<Props> = ({ products, showCost, onClose, o
       const changes: { field: typeof FIELDS[number]; from: number; to: number; usd: boolean }[] = [];
       for (const f of FIELDS) {
         if (!fields.includes(f.key)) continue;
+        if (f.isCost && !showCost) continue;             // cashiers can never touch cost prices
         const old = Number((p as any)[f.key]) || 0;
         if (skipZero && old === 0 && mode !== 'set') continue;  // don't invent prices for unused tiers
         const usd = (f.isCost ? p.costCurrency : p.currency) === 'USD';
@@ -80,7 +81,7 @@ export const BulkPriceModal: React.FC<Props> = ({ products, showCost, onClose, o
       return { product: p, changes };
     }).filter(r => r.changes.length > 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products, fields, mode, num, rounding, skipZero, valid]);
+  }, [products, fields, mode, num, rounding, skipZero, valid, showCost]);
 
   const priceBelowCost = plan.filter(r => {
     const sell = r.changes.find(c => c.field.key === 'sellingPrice')?.to ?? r.product.sellingPrice;
